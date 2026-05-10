@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "slidev slides.md",
-    "build": "slidev build slides.md --base /meine-kindheit/"
+    "build": "slidev build slides.md --base /meine-kindheit/ --out docs"
   },
   "dependencies": {
     "@slidev/cli": "^52.15.0",
