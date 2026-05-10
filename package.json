@@ -1,0 +1,13 @@
+{
+  "name": "meine-kindheit-slidev",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "slidev slides.md",
+    "build": "slidev build slides.md --base /meine-kindheit/"
+  },
+  "dependencies": {
+    "@slidev/cli": "^52.15.0",
+    "@slidev/theme-default": "^0.25.0"
+  }
+}
