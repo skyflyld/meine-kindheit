@@ -8,7 +8,24 @@
 <meta property="slidev:version" content="52.15.0">
 <meta name="description" content="&quot;## Meine Kindheit · 互动教案\nA2→B1 德语 · Präteritum/Perfekt 双时态教学\n📺 基于3分钟德语教学视频脚本\n&quot;">
 <meta property="og:title" content="Wie war meine Kindheit? | A2–B1 Deutsch">
-<meta property="og:description" content="&quot;## Meine Kindheit · 互动教案\nA2→B1 德语 · Präteritum/Perfekt 双时态教学\n📺 基于3分钟德语教学视频脚本\n&quot;">  <script type="module" crossorigin src="/meine-kindheit/assets/index-BgYsGaKk.js"></script>
+<meta property="og:description" content="&quot;## Meine Kindheit · 互动教案\nA2→B1 德语 · Präteritum/Perfekt 双时态教学\n📺 基于3分钟德语教学视频脚本\n&quot;">  <script>
+// Error capture for debugging
+window.__slidev_errors = [];
+window.onerror = function(msg, url, line, col, err) {
+  window.__slidev_errors.push({msg: msg, url: url, line: line, col: col});
+  document.getElementById('loading-text').textContent += '
+[ERROR] ' + msg;
+  document.getElementById('loading-text').style.color = 'red';
+};
+window.addEventListener('unhandledrejection', function(e) {
+  window.__slidev_errors.push({msg: 'Promise: ' + e.reason});
+  document.getElementById('loading-text').textContent += '
+[PROMISE ERROR] ' + e.reason;
+});
+// Mark that this inline script executed
+document.getElementById('loading-text').textContent = 'Lade ... [JS engine started]';
+</script>
+<script type="module" crossorigin src="/meine-kindheit/assets/index-BgYsGaKk.js"></script>
   <link rel="modulepreload" crossorigin href="/meine-kindheit/assets/rolldown-runtime-S-ySWqyJ.js">
   <link rel="modulepreload" crossorigin href="/meine-kindheit/assets/_plugin-vue_export-helper-BOai-rQB.js">
   <link rel="modulepreload" crossorigin href="/meine-kindheit/assets/modules/shiki-RrnAsmvt.js">
@@ -20,7 +37,7 @@
   <link rel="stylesheet" crossorigin href="/meine-kindheit/assets/index-C95tnlri.css">
 </head>
 <body>
-  <div id="app"></div>
+  <div id="app"><p id="loading-text" style="padding:40px;font-size:24px;color:#333;">Lade ...</p></div>
   <div id="mermaid-rendering-container"></div>
   
 </body>
