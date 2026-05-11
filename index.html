@@ -1,55 +1,744 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Wie war meine Kindheit? | A2–B1 Deutsch</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta property="slidev:version" content="52.15.0">
-<meta name="description" content="&quot;## Meine Kindheit · 互动教案\nA2→B1 德语 · Präteritum/Perfekt 双时态教学\n📺 基于3分钟德语教学视频脚本\n&quot;">
-<meta property="og:title" content="Wie war meine Kindheit? | A2–B1 Deutsch">
-<meta property="og:description" content="&quot;## Meine Kindheit · 互动教案\nA2→B1 德语 · Präteritum/Perfekt 双时态教学\n📺 基于3分钟德语教学视频脚本\n&quot;">  <script type="module" crossorigin src="/meine-kindheit/assets/index-BgYsGaKk.js"></script>
-  <link rel="modulepreload" crossorigin href="/meine-kindheit/assets/rolldown-runtime-S-ySWqyJ.js">
-  <link rel="modulepreload" crossorigin href="/meine-kindheit/assets/_plugin-vue_export-helper-BOai-rQB.js">
-  <link rel="modulepreload" crossorigin href="/meine-kindheit/assets/modules/shiki-RrnAsmvt.js">
-  <link rel="modulepreload" crossorigin href="/meine-kindheit/assets/modules/vue-0leA2umk.js">
-  <link rel="modulepreload" crossorigin href="/meine-kindheit/assets/slidev/context-PY6J0iwk.js">
-  <link rel="modulepreload" crossorigin href="/meine-kindheit/assets/slidev/useNav-BzV6ptKf.js">
-  <link rel="modulepreload" crossorigin href="/meine-kindheit/assets/syncState-DHTNF_Ne.js">
-  <link rel="stylesheet" crossorigin href="/meine-kindheit/assets/modules/shiki-BhczoDnk.css">
-  <link rel="stylesheet" crossorigin href="/meine-kindheit/assets/index-C95tnlri.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wie war meine Kindheit? — 德语互动教案</title>
+<style>
+/* ===== Reset & Base ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 17px; scroll-behavior: smooth; }
+body {
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: #fdf6ec;
+  color: #3d2b0f;
+  line-height: 1.75;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem 4rem;
+  background-image:
+    radial-gradient(ellipse at 20% 20%, rgba(232,168,56,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(232,168,56,0.04) 0%, transparent 50%);
+}
+
+/* ===== Main Container ===== */
+.app-container {
+  max-width: 760px;
+  width: 100%;
+}
+
+/* ===== Header ===== */
+.header {
+  text-align: center;
+  padding: 2.5rem 1rem 2rem;
+  border-bottom: 2px solid #e8a838;
+  margin-bottom: 2rem;
+}
+.header h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #3d2b0f;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.3rem;
+}
+.header .subtitle {
+  font-size: 1.05rem;
+  color: #6b5b4e;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* ===== Progress Bar ===== */
+.progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+  padding: 0 0.5rem;
+}
+.progress-bar {
+  flex: 1;
+  height: 6px;
+  background: #e8d5b8;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: #e8a838;
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+.progress-label {
+  font-size: 0.85rem;
+  color: #8b7355;
+  font-weight: 600;
+  min-width: 3rem;
+  text-align: right;
+}
+
+/* ===== Slide ===== */
+.slide {
+  display: none;
+  background: #fffbf2;
+  border-radius: 18px;
+  padding: 2.2rem 2rem;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.04);
+  border: 1px solid #f0e4cc;
+  animation: slideIn 0.35s ease;
+}
+.slide.active { display: block; }
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #3d2b0f;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 2px dashed #e8a838;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.slide-title .num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  background: #e8a838;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ===== Click-to-reveal items ===== */
+.reveal-wrap { display: flex; flex-direction: column; gap: 1.2rem; }
+.reveal-item {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.4s ease, max-height 0.5s ease, margin 0.4s ease;
+  margin-bottom: 0;
+}
+.reveal-item.visible {
+  opacity: 1;
+  max-height: 600px;
+  margin-bottom: 0.2rem;
+}
+.reveal-item .de { font-size: 1.15rem; color: #3d2b0f; font-weight: 600; }
+.reveal-item .zh { font-size: 0.9rem; color: #6b5b4e; font-style: italic; margin-top: 0.15rem; }
+
+.reveal-hint {
+  font-size: 0.8rem;
+  color: #c4a97a;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  padding: 0.6rem;
+  border: 1px dashed #e8d5b8;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+.reveal-hint:hover { background: #fef9f0; }
+.reveal-hint.done { border-color: transparent; cursor: default; color: #d4c5a8; }
+.reveal-hint.done:hover { background: transparent; }
+
+/* ===== Grammar Markings ===== */
+.praeteritum {
+  border-bottom: 3px solid #c7851a;
+  padding-bottom: 1px;
+  background: linear-gradient(to top, rgba(199,133,26,0.12) 0%, transparent 60%);
+  border-radius: 2px;
+}
+.perfekt {
+  border-bottom: 2px dashed #7a5c1e;
+  padding-bottom: 1px;
+  background: linear-gradient(to top, rgba(122,92,30,0.08) 0%, transparent 60%);
+  border-radius: 2px;
+}
+.grammar-label {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 4px;
+  margin-left: 5px;
+  vertical-align: middle;
+  letter-spacing: 0.03em;
+}
+.gl-prt { background: #fef3e0; color: #c7851a; border: 1px solid #e8a838; }
+.gl-perf { background: #fdf5ea; color: #7a5c1e; border: 1px dashed #a08050; }
+
+/* ===== Grammar Note Box ===== */
+.grammar-note {
+  margin-top: 1.2rem;
+  padding: 1rem 1.2rem;
+  background: #fef9f0;
+  border-left: 4px solid #e8a838;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+.grammar-note strong { color: #c7851a; }
+.grammar-note ul { margin: 0.4rem 0 0 1.2rem; }
+.grammar-note li { margin-bottom: 0.2rem; color: #5a4a3a; }
+
+/* ===== Vocab Cards ===== */
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.7rem;
+  margin: 1rem 0;
+}
+.vocab-card {
+  background: #fef3e0;
+  border-radius: 10px;
+  padding: 0.7rem 0.9rem;
+  text-align: center;
+  border: 1px solid #f0dba8;
+}
+.vocab-card .de { font-size: 1rem; font-weight: 700; color: #3d2b0f; }
+.vocab-card .zh { font-size: 0.8rem; color: #8b7355; }
+
+/* ===== Comparison Table ===== */
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+.compare-table th {
+  background: #fef3e0;
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+  font-weight: 700;
+  color: #c7851a;
+  border-bottom: 2px solid #e8a838;
+}
+.compare-table td {
+  padding: 0.55rem 0.8rem;
+  border-bottom: 1px solid #f0e4cc;
+  color: #3d2b0f;
+}
+.compare-table tr:nth-child(even) td { background: #fefbf5; }
+
+/* ===== Verb Conjugation Table ===== */
+.conj-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+.conj-table th {
+  background: #e8a838;
+  color: #fff;
+  padding: 0.6rem 0.7rem;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+.conj-table th:first-child { border-radius: 8px 0 0 0; }
+.conj-table th:last-child { border-radius: 0 8px 0 0; }
+.conj-table td {
+  padding: 0.5rem 0.7rem;
+  text-align: center;
+  border-bottom: 1px solid #f0e4cc;
+  color: #3d2b0f;
+}
+.conj-table td:first-child { font-weight: 700; color: #c7851a; }
+.conj-table tr:hover td { background: #fef9f0; }
+
+/* ===== Exercises ===== */
+.exercise {
+  margin: 1.5rem 0;
+  padding: 1.2rem 1.5rem;
+  background: #fefbf5;
+  border-radius: 12px;
+  border: 1px solid #f0e4cc;
+}
+.exercise .q-num {
+  display: inline-block;
+  width: 1.6rem;
+  height: 1.6rem;
+  text-align: center;
+  line-height: 1.6rem;
+  background: #e8a838;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-right: 0.5rem;
+}
+.exercise .question {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #3d2b0f;
+  margin-bottom: 0.3rem;
+}
+.exercise .hint {
+  font-size: 0.8rem;
+  color: #8b7355;
+  font-style: italic;
+  margin-bottom: 0.7rem;
+}
+.exercise textarea {
+  width: 100%;
+  min-height: 2.8rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #e0d0b0;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: #3d2b0f;
+  background: #fff;
+  resize: vertical;
+  transition: border-color 0.25s;
+}
+.exercise textarea:focus {
+  outline: none;
+  border-color: #e8a838;
+  box-shadow: 0 0 0 3px rgba(232,168,56,0.15);
+}
+.exercise .btn-row { margin-top: 0.6rem; display: flex; gap: 0.5rem; align-items: center; }
+.exercise .saved-answer {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #5a4a3a;
+  background: #e8f5e0;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  display: none;
+}
+
+/* ===== Nav Buttons ===== */
+.nav-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.8rem;
+  gap: 0.8rem;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+.btn-prev { background: #f5e6d3; color: #8b7355; }
+.btn-prev:hover { background: #ecd5b0; }
+.btn-next { background: #e8a838; color: #fff; }
+.btn-next:hover { background: #d49320; }
+.btn-save {
+  padding: 0.45rem 1rem;
+  font-size: 0.82rem;
+  background: #f5e6d3;
+  color: #8b7355;
+  border-radius: 8px;
+}
+.btn-save:hover { background: #ecd5b0; }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn:disabled:hover { background: inherit; }
+
+/* ===== Footer ===== */
+.footer {
+  text-align: center;
+  margin-top: 2.5rem;
+  padding: 1.5rem 0 0.5rem;
+  font-size: 0.85rem;
+  color: #c4a97a;
+  border-top: 1px solid #f0e4cc;
+}
+
+/* ===== Topic chip ===== */
+.topic-chip {
+  display: inline-block;
+  background: #fef3e0;
+  color: #c7851a;
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 20px;
+  margin-bottom: 0.8rem;
+}
+
+/* ===== Sentence list ===== */
+.sent-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.sent-list li {
+  padding: 0.5rem 0.8rem;
+  background: #fefbf5;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 640px) {
+  html { font-size: 15px; }
+  body { padding: 1rem 0.6rem 3rem; }
+  .header h1 { font-size: 1.7rem; }
+  .slide { padding: 1.5rem 1.2rem; border-radius: 14px; }
+  .vocab-grid { grid-template-columns: repeat(2, 1fr); }
+  .conj-table { font-size: 0.75rem; }
+  .conj-table th, .conj-table td { padding: 0.35rem 0.4rem; }
+  .compare-table { font-size: 0.82rem; }
+}
+
+@media (max-width: 380px) {
+  .slide { padding: 1.2rem 0.9rem; }
+  .btn { padding: 0.55rem 1rem; font-size: 0.85rem; }
+}
+</style>
 </head>
 <body>
-  <div id="app"><p id="loading-text" style="padding:40px;font-size:24px;color:#666;">Lade Slidev ...</p></div>
-  <div id="mermaid-rendering-container"></div>
-  
+<div class="app-container">
 
-<div id="js-status" style="display:none;">script-not-run</div>
+<!-- ===== Header ===== -->
+<header class="header">
+  <h1>Wie war meine Kindheit?</h1>
+  <p class="subtitle">我的童年是什么样的？ — 德语 Präteritum 互动教案</p>
+</header>
+
+<!-- ===== Progress ===== -->
+<div class="progress-wrap">
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:20%"></div></div>
+  <span class="progress-label" id="progressLabel">1/5</span>
+</div>
+
+<!-- ===== Slide 1: Einführung ===== -->
+<div class="slide active" id="slide1">
+  <div class="slide-title"><span class="num">1</span>Einführung · 开场</div>
+  <div class="reveal-wrap" id="reveal1">
+    <div class="reveal-item"><div class="de">Hallo zusammen! 👋</div><div class="zh">大家好！</div></div>
+    <div class="reveal-item"><div class="de">Heute sprechen wir über das Thema: <em>„Wie <span class="praeteritum">war</span> meine Kindheit?"</em></div><div class="zh">今天我们学习的话题是："我的童年是什么样的？"</div></div>
+    <div class="reveal-item"><div class="de">Jeder Mensch hat schöne Erinnerungen an die Kindheit.</div><div class="zh">每个人都有美好的童年回忆。</div></div>
+    <div class="reveal-item"><div class="de">Auf Deutsch benutzen wir für die Vergangenheit oft das <strong>Präteritum</strong>.</div><div class="zh">德语中叙述过去常用 <strong>过去式 (Präteritum)</strong>。</div></div>
+  </div>
+  <div class="reveal-hint" onclick="revealNext('reveal1', this)" id="hint1">👆 点击此处逐条显示 · Klicken zum Anzeigen</div>
+  <div class="grammar-note">
+    <strong>📖 Grammatik-Tipp:</strong><br>
+    <strong>Präteritum</strong> <span class="grammar-label gl-prt">过去式</span> = 书面叙述过去事件的主要时态。<br>
+    <strong>Perfekt</strong> <span class="grammar-label gl-perf">现在完成时</span> = 口语中更常用的过去时态。<br>
+    本节课重点：<strong>Präteritum</strong>（金色下划线标记）。
+  </div>
+</div>
+
+<!-- ===== Slide 2: Meine Kindheit ===== -->
+<div class="slide" id="slide2">
+  <div class="slide-title"><span class="num">2</span>Meine Kindheit · 童年生活</div>
+  <div class="reveal-wrap" id="reveal2">
+    <div class="reveal-item"><div class="de">Früher <span class="praeteritum">war</span> ich sehr aktiv. <span class="grammar-label gl-prt">Prät</span></div><div class="zh">以前我非常活跃。</div></div>
+    <div class="reveal-item"><div class="de">Ich <span class="praeteritum">spielte</span> jeden Tag draußen. <span class="grammar-label gl-prt">Prät</span></div><div class="zh">我每天都在外面玩。</div></div>
+    <div class="reveal-item"><div class="de">Meine Familie <span class="praeteritum">war</span> sehr wichtig für mich. <span class="grammar-label gl-prt">Prät</span></div><div class="zh">我的家庭对我很重要。</div></div>
+    <div class="reveal-item"><div class="de">Als Kind <span class="praeteritum">war</span> ich sehr neugierig.</div><div class="zh">小时候我非常好奇。</div></div>
+    <div class="reveal-item"><div class="de">Ich <span class="praeteritum">spielte</span> oft mit meinen Freunden draußen.</div><div class="zh">我经常和朋友们在外面玩。</div></div>
+    <div class="reveal-item"><div class="de">Im Sommer <span class="praeteritum">fuhren</span> wir Fahrrad und <span class="praeteritum">spielten</span> Fußball im Park.</div><div class="zh">夏天我们骑自行车，在公园踢足球。</div></div>
+    <div class="reveal-item"><div class="de">Meine Eltern <span class="praeteritum">waren</span> sehr freundlich, und wir <span class="praeteritum">aßen</span> jeden Abend zusammen.</div><div class="zh">我的父母非常友善，我们每天晚上一起吃饭。</div></div>
+    <div class="reveal-item"><div class="de">Damals <span class="praeteritum">hatte</span> ich kein Smartphone, aber ich <span class="praeteritum">war</span> trotzdem glücklich. 😊</div><div class="zh">那时候我没有智能手机，但我依然很快乐。</div></div>
+  </div>
+  <div class="reveal-hint" onclick="revealNext('reveal2', this)" id="hint2">👆 点击此处逐条显示 · Klicken zum Anzeigen</div>
+  <div class="grammar-note">
+    <strong>🔍 Präteritum 动词分析:</strong>
+    <ul>
+      <li><span class="praeteritum">war</span> = <strong>sein</strong>（是）的过去式 — 不规则</li>
+      <li><span class="praeteritum">spielte</span> = <strong>spielen</strong>（玩）的过去式 — 规则：词干 + <strong>-te</strong></li>
+      <li><span class="praeteritum">fuhren</span> = <strong>fahren</strong>（骑/乘）的过去式 — 不规则，元音变化 a→u</li>
+      <li><span class="praeteritum">aßen</span> = <strong>essen</strong>（吃）的过去式 — 不规则</li>
+      <li><span class="praeteritum">hatte</span> = <strong>haben</strong>（有）的过去式 — 不规则</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== Slide 3: Schule und Freunde ===== -->
+<div class="slide" id="slide3">
+  <div class="slide-title"><span class="num">3</span>Schule und Freunde · 学校与朋友</div>
+  <span class="topic-chip">📝 Wortschatz · 词汇</span>
+  <div class="vocab-grid">
+    <div class="vocab-card"><div class="de">die Schule 🏫</div><div class="zh">学校</div></div>
+    <div class="vocab-card"><div class="de">der Freund 👫</div><div class="zh">朋友</div></div>
+    <div class="vocab-card"><div class="de">lernen 📖</div><div class="zh">学习</div></div>
+    <div class="vocab-card"><div class="de">spielen ⚽</div><div class="zh">玩</div></div>
+    <div class="vocab-card"><div class="de">lachen 😂</div><div class="zh">大笑</div></div>
+  </div>
+  <div class="reveal-wrap" id="reveal3">
+    <div class="reveal-item"><div class="de">In der Schule <span class="praeteritum">hatte</span> ich viele Freunde. <span class="grammar-label gl-prt">Prät</span></div><div class="zh">在学校里我有很多朋友。</div></div>
+    <div class="reveal-item"><div class="de">Wir <span class="praeteritum">lernten</span> zusammen und <span class="praeteritum">machten</span> viele lustige Dinge. <span class="grammar-label gl-prt">Prät</span></div><div class="zh">我们一起学习，也做很多有趣的事情。</div></div>
+    <div class="reveal-item"><div class="de">Meine Lieblingsfächer <span class="praeteritum">waren</span> Kunst und Sport. <span class="grammar-label gl-prt">Prät</span></div><div class="zh">我最喜欢的科目是美术和体育。</div></div>
+    <div class="reveal-item"><div class="de">Ich <span class="praeteritum">lachte</span> viel mit meinen Klassenkameraden. <span class="grammar-label gl-prt">Prät</span></div><div class="zh">我经常和同学们一起大笑。</div></div>
+    <div class="reveal-item"><div class="de">Manchmal <span class="praeteritum">machten</span> wir auch Fehler, aber das <span class="praeteritum">war</span> eine schöne Zeit. ✨</div><div class="zh">有时候我们也会犯错，但那是一段美好的时光。</div></div>
+  </div>
+  <div class="reveal-hint" onclick="revealNext('reveal3', this)" id="hint3">👆 点击此处逐条显示 · Klicken zum Anzeigen</div>
+  <div class="grammar-note">
+    <strong>🔍 规则动词 Präteritum:</strong><br>
+    词干 + <strong>-te</strong> → <span class="praeteritum">lernte</span>, <span class="praeteritum">machte</span>, <span class="praeteritum">lachte</span>, <span class="praeteritum">spielte</span><br>
+    词干以 -d/-t 结尾时加 -e-：<span class="praeteritum">arbeit<strong>e</strong>te</span>
+  </div>
+</div>
+
+<!-- ===== Slide 4: Veränderungen ===== -->
+<div class="slide" id="slide4">
+  <div class="slide-title"><span class="num">4</span>Veränderungen · 变化与感受</div>
+  <span class="topic-chip">Damals ↔ Heute · 以前 vs 今天</span>
+  <table class="compare-table">
+    <thead><tr><th>Früher · 以前</th><th>Heute · 今天</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Ich <span class="praeteritum">hatte</span> mehr Zeit.<br><em>我以前有更多时间。</em></td>
+        <td>Alles <span class="perfekt">ist</span> schneller.<br><em>现在一切都更快了。</em></td>
+      </tr>
+      <tr>
+        <td>Ich <span class="praeteritum">spielte</span> viel.<br><em>我以前经常玩。</em></td>
+        <td>Viele Menschen <span class="perfekt">arbeiten</span> viel.<br><em>现在很多人工作很忙。</em></td>
+      </tr>
+      <tr>
+        <td>Das Leben <span class="praeteritum">war</span> langsam.<br><em>生活很慢。</em></td>
+        <td>Aber die Kindheit <span class="perfekt">bleibt</span> im Herzen.<br><em>但童年会留在心里。</em></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="reveal-wrap" id="reveal4">
+    <div class="reveal-item"><div class="de">Meine Kindheit <span class="praeteritum">war</span> wunderschön. 💛</div><div class="zh">我的童年非常美好。</div></div>
+    <div class="reveal-item"><div class="de">Heute bin ich älter, und mein Leben <span class="perfekt">ist</span> anders. <span class="grammar-label gl-perf">Perf.</span></div><div class="zh">如今我长大了，我的生活也不同了。</div></div>
+    <div class="reveal-item"><div class="de">Aber meine Kindheit <span class="perfekt">bleibt</span> immer in meinem Herzen.</div><div class="zh">但我的童年会永远留在我的心里。</div></div>
+    <div class="reveal-item"><div class="de">Die Erinnerungen <span class="perfekt">machen</span> mich glücklich. 😊</div><div class="zh">这些回忆让我感到幸福。</div></div>
+  </div>
+  <div class="reveal-hint" onclick="revealNext('reveal4', this)" id="hint4">👆 点击此处逐条显示 · Klicken zum Anzeigen</div>
+</div>
+
+<!-- ===== Slide 5: Zusammenfassung ===== -->
+<div class="slide" id="slide5">
+  <div class="slide-title"><span class="num">5</span>Zusammenfassung · 总结与互动</div>
+
+  <span class="topic-chip">📌 Wichtige Sätze · 重点句型</span>
+  <ul class="sent-list">
+    <li>Früher <span class="praeteritum">war</span> ich ... — 以前我是……</li>
+    <li>Ich <span class="praeteritum">spielte</span> oft ... — 我经常玩……</li>
+    <li>Meine Kindheit <span class="praeteritum">war</span> ... — 我的童年是……</li>
+    <li>Ich <span class="perfekt">erinnere</span> mich an ... — 我记得……</li>
+  </ul>
+
+  <div class="grammar-note" style="margin-bottom:1.5rem;">
+    <strong>📖 Präteritum 变位规则:</strong>
+    <ul>
+      <li><strong>sein:</strong> ich war, du warst, er/sie/es war, wir waren, ihr wart, sie waren</li>
+      <li><strong>haben:</strong> ich hatte, du hattest, er/sie/es hatte, wir hatten, ihr hattet, sie hatten</li>
+      <li><strong>规则动词:</strong> 词干 + -te → ich spielte, wir spielten</li>
+    </ul>
+  </div>
+
+  <!-- Verb Conjugation Table -->
+  <span class="topic-chip">🔤 Verbtabelle · 动词变位速查表</span>
+  <div style="overflow-x:auto;">
+  <table class="conj-table">
+    <thead>
+      <tr><th>Infinitiv</th><th>中文</th><th>Präteritum</th><th>Perfekt</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>sein</td><td>是</td><td>war</td><td>ist gewesen</td></tr>
+      <tr><td>haben</td><td>有</td><td>hatte</td><td>hat gehabt</td></tr>
+      <tr><td>spielen</td><td>玩</td><td>spielte</td><td>hat gespielt</td></tr>
+      <tr><td>machen</td><td>做</td><td>machte</td><td>hat gemacht</td></tr>
+      <tr><td>lachen</td><td>笑</td><td>lachte</td><td>hat gelacht</td></tr>
+      <tr><td>lernen</td><td>学习</td><td>lernte</td><td>hat gelernt</td></tr>
+      <tr><td>fahren</td><td>骑/乘</td><td>fuhr</td><td>ist gefahren</td></tr>
+      <tr><td>essen</td><td>吃</td><td>aß</td><td>hat gegessen</td></tr>
+      <tr><td>mögen</td><td>喜欢</td><td>mochte</td><td>hat gemocht</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- Interactive Exercises -->
+  <span class="topic-chip" style="margin-top:1.8rem;">✏️ Übungen · 互动练习</span>
+
+  <div class="exercise" id="ex1">
+    <div><span class="q-num">1</span><span class="question">Wie war deine Kindheit?</span></div>
+    <div class="hint">你的童年是什么样的？用 Präteritum 回答 👇</div>
+    <textarea id="answer1" placeholder="Meine Kindheit war ..."></textarea>
+    <div class="btn-row">
+      <button class="btn btn-save" onclick="saveAnswer(1)">💾 保存</button>
+      <span class="saved-answer" id="saved1">✅ 已保存</span>
+    </div>
+  </div>
+
+  <div class="exercise" id="ex2">
+    <div><span class="q-num">2</span><span class="question">Was hast du als Kind gern gemacht?</span></div>
+    <div class="hint">你小时候喜欢做什么？用 Perfekt 回答 👇</div>
+    <textarea id="answer2" placeholder="Als Kind habe ich gern ..."></textarea>
+    <div class="btn-row">
+      <button class="btn btn-save" onclick="saveAnswer(2)">💾 保存</button>
+      <span class="saved-answer" id="saved2">✅ 已保存</span>
+    </div>
+  </div>
+
+  <div class="exercise" id="ex3">
+    <div><span class="q-num">3</span><span class="question">Wer war dein bester Freund / deine beste Freundin?</span></div>
+    <div class="hint">你最好的朋友是谁？用 Präteritum 回答 👇</div>
+    <textarea id="answer3" placeholder="Mein bester Freund / Meine beste Freundin war ..."></textarea>
+    <div class="btn-row">
+      <button class="btn btn-save" onclick="saveAnswer(3)">💾 保存</button>
+      <span class="saved-answer" id="saved3">✅ 已保存</span>
+    </div>
+  </div>
+
+  <div class="exercise" id="ex4">
+    <div><span class="q-num">4</span><span class="question">Welche Spiele mochtest du als Kind?</span></div>
+    <div class="hint">你小时候喜欢什么游戏？用 Präteritum 回答 👇</div>
+    <textarea id="answer4" placeholder="Als Kind mochte ich ..."></textarea>
+    <div class="btn-row">
+      <button class="btn btn-save" onclick="saveAnswer(4)">💾 保存</button>
+      <span class="saved-answer" id="saved4">✅ 已保存</span>
+    </div>
+  </div>
+
+  <!-- End Quote -->
+  <div style="text-align:center; padding:2rem 0 1rem;">
+    <p style="font-size:1.15rem; font-weight:700; color:#c7851a; font-style:italic;">
+      Deutsch ist nicht nur Grammatik —<br>Deutsch ist deine Geschichte. 🦋
+    </p>
+    <p style="font-size:0.85rem; color:#8b7355; margin-top:0.3rem;">
+      德语不只是语法 — 德语就是你的故事。
+    </p>
+  </div>
+</div>
+
+<!-- ===== Navigation ===== -->
+<div class="nav-row">
+  <button class="btn btn-prev" id="btnPrev" onclick="prevSlide()" disabled>← Zurück · 上一页</button>
+  <button class="btn btn-next" id="btnNext" onclick="nextSlide()">Weiter · 下一页 →</button>
+</div>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  德语互动教案 · Meine Kindheit · Präteritum · A2–B1<br>
+  🦞 Made with ♥ for German learners
+</footer>
+
+</div>
+
 <script>
-var el = document.getElementById('js-status');
-if (el) {
-  el.style.display = 'block';
-  el.style.padding = '8px';
-  el.style.background = '#ffe066';
-  el.style.color = '#333';
-  el.style.fontSize = '14px';
-  el.style.fontFamily = 'monospace';
-  el.textContent = 'OK: inline script at body end';
-}
-window.__errs = [];
-window.onerror = function(msg, url, line, col, err) {
-  window.__errs.push({msg:''+msg, url:url||'', line:line, col:col});
-  var e = document.getElementById('js-status');
-  if (e) {
-    e.style.background = '#f88';
-    e.style.color = '#300';
-    e.textContent = 'ERR: ' + msg;
-  }
+// ===== State =====
+let currentSlide = 1;
+const totalSlides = 5;
+
+// Track revealed state per slide
+const revealedCount = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+const revealTotals = {
+  1: document.querySelectorAll('#reveal1 .reveal-item').length,
+  2: document.querySelectorAll('#reveal2 .reveal-item').length,
+  3: document.querySelectorAll('#reveal3 .reveal-item').length,
+  4: document.querySelectorAll('#reveal4 .reveal-item').length,
+  5: 0 // Slide 5 has no click-to-reveal
 };
-window.addEventListener('unhandledrejection', function(e) {
-  window.__errs.push({msg:''+e.reason});
-  var el2 = document.getElementById('js-status');
-  if (el2) { el2.textContent = 'REJ: ' + e.reason; el2.style.background = '#f88'; }
+
+// ===== Navigation =====
+function showSlide(n) {
+  document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+  document.getElementById('slide' + n).classList.add('active');
+  currentSlide = n;
+
+  // Update progress
+  document.getElementById('progressFill').style.width = ((n / totalSlides) * 100) + '%';
+  document.getElementById('progressLabel').textContent = n + '/' + totalSlides;
+
+  // Update buttons
+  document.getElementById('btnPrev').disabled = (n === 1);
+  document.getElementById('btnNext').disabled = (n === totalSlides);
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function nextSlide() {
+  if (currentSlide < totalSlides) showSlide(currentSlide + 1);
+}
+function prevSlide() {
+  if (currentSlide > 1) showSlide(currentSlide - 1);
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); nextSlide(); }
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); prevSlide(); }
+  if (e.key === ' ' || e.key === 'Spacebar') {
+    e.preventDefault();
+    const hint = document.getElementById('hint' + currentSlide);
+    if (hint && !hint.classList.contains('done')) revealNext('reveal' + currentSlide, hint);
+  }
+});
+
+// ===== Click-to-reveal =====
+function revealNext(revealId, hintEl) {
+  const wrap = document.getElementById(revealId);
+  const items = wrap.querySelectorAll('.reveal-item');
+  const slideNum = parseInt(revealId.replace('reveal', ''));
+  let idx = revealedCount[slideNum];
+
+  if (idx < items.length) {
+    items[idx].classList.add('visible');
+    revealedCount[slideNum] = idx + 1;
+  }
+
+  if (revealedCount[slideNum] >= items.length) {
+    hintEl.classList.add('done');
+    hintEl.textContent = '✅ 全部显示 · Alle angezeigt';
+  }
+}
+
+// ===== Save answers =====
+function saveAnswer(n) {
+  const textarea = document.getElementById('answer' + n);
+  const saved = document.getElementById('saved' + n);
+  const answer = textarea.value.trim();
+
+  if (answer) {
+    // Save to localStorage
+    const allAnswers = JSON.parse(localStorage.getItem('meine-kindheit-answers') || '{}');
+    allAnswers['q' + n] = answer;
+    localStorage.setItem('meine-kindheit-answers', JSON.stringify(allAnswers));
+
+    saved.style.display = 'inline-block';
+    setTimeout(() => { saved.style.display = 'none'; }, 2000);
+  }
+}
+
+// ===== Load saved answers on init =====
+function loadAnswers() {
+  try {
+    const allAnswers = JSON.parse(localStorage.getItem('meine-kindheit-answers') || '{}');
+    for (let i = 1; i <= 4; i++) {
+      if (allAnswers['q' + i]) {
+        document.getElementById('answer' + i).value = allAnswers['q' + i];
+      }
+    }
+  } catch(e) { /* ignore */ }
+}
+
+// ===== Init =====
+loadAnswers();
+
+// Touch swipe support
+let touchStartX = 0, touchStartY = 0;
+document.addEventListener('touchstart', function(e) {
+  touchStartX = e.changedTouches[0].screenX;
+  touchStartY = e.changedTouches[0].screenY;
+}, { passive: true });
+document.addEventListener('touchend', function(e) {
+  const dx = e.changedTouches[0].screenX - touchStartX;
+  const dy = e.changedTouches[0].screenY - touchStartY;
+  if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+    if (dx < 0) nextSlide(); else prevSlide();
+  }
 });
 </script>
 </body>
