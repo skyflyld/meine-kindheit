@@ -97,9 +97,97 @@ body{
 .rh:hover{background:#fef9f0}
 .rh.d{border-color:#e8a838;cursor:pointer;color:#c7851a;font-weight:600;background:#fef9f0}
 .rh.d:hover{background:#fdedca}
-@media(max-width:900px){html{font-size:16px}body{padding:.8rem}.slide{padding:2rem 1.5rem;min-height:45vh}.reveal-item .de{font-size:1.5rem}.vocab-grid{grid-template-columns:repeat(3,1fr)}.compare-grid{grid-template-columns:1fr}.ex-grid{grid-template-columns:1fr}}
-@media(max-width:640px){html{font-size:14px}.slide{padding:1.2rem 1rem}.slide-title{font-size:1.3rem}.reveal-item .de{font-size:1.2rem}.vocab-grid{grid-template-columns:repeat(2,1fr);gap:.5rem}.btn{padding:.5rem 1rem;font-size:.85rem}}
-@media(min-width:1400px){html{font-size:24px}.app-container{max-width:1300px}}
+
+/* ===== 3D Flip Card Styles ===== */
+.flip-grid{display:grid;gap:.9rem;margin:.5rem 0}
+.flip-grid.g5{grid-template-columns:repeat(5,1fr)}
+.flip-grid.g4{grid-template-columns:repeat(4,1fr)}
+.flip-grid.g3{grid-template-columns:repeat(3,1fr)}
+
+.flip-card{perspective:800px;height:200px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.flip-card-inner{position:relative;width:100%;height:100%;transition:transform .6s cubic-bezier(.25,.46,.45,.94);transform-style:preserve-3d}
+.flip-card.flipped .flip-card-inner{transform:rotateY(180deg)}
+.flip-card-front,.flip-card-back{
+  position:absolute;width:100%;height:100%;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  border-radius:16px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:.6rem
+}
+.flip-card-front{
+  background:linear-gradient(145deg,#fffbf2 0%,#fef7e7 100%);
+  border:2.5px solid #e8d5b8;box-shadow:0 3px 12px rgba(0,0,0,.06)
+}
+.flip-card-front.irregular{
+  border-color:#d49320;
+  background:linear-gradient(145deg,#fef9e8 0%,#fef3d8 100%);
+  box-shadow:0 3px 14px rgba(199,133,26,.12)
+}
+.flip-card-back{
+  background:linear-gradient(145deg,#fef9f0 0%,#fef3e0 100%);
+  border:2.5px solid #e8a838;transform:rotateY(180deg);
+  box-shadow:0 3px 14px rgba(199,133,26,.1)
+}
+.flip-card-front .fc-emoji{font-size:2.8rem;line-height:1;margin-bottom:.2rem}
+.flip-card-front .fc-text{font-size:1rem;font-weight:700;color:#3d2b0f;text-align:center}
+.flip-card-front .fc-sub{font-size:.65rem;color:#8b7355;margin-top:.15rem}
+.flip-card-front .fc-hint{font-size:.65rem;font-weight:600;color:#c7851a;margin-top:.25rem;
+  background:#fef3e0;padding:2px 10px;border-radius:10px}
+.flip-card-back .fc-de{font-size:1.15rem;font-weight:700;color:#3d2b0f;text-align:center;line-height:1.3}
+.flip-card-back .fc-zh{font-size:.8rem;color:#8b7355;font-style:italic;margin-top:.15rem}
+.flip-card-back .fc-ex{font-size:.72rem;color:#6b5b4e;margin-top:.35rem;text-align:center;
+  padding:.25rem .5rem;background:rgba(232,168,56,.08);border-radius:8px;line-height:1.4}
+.flip-card-back .fc-verb{font-size:.85rem;margin-top:.25rem;text-align:center;line-height:1.5}
+.flip-card-back .fc-verb .prt{color:#c7851a;font-weight:700}
+.flip-card-back .fc-verb .prf{color:#7a5c1e;font-weight:600}
+
+/* Flip progress bar */
+.flip-bar{display:flex;justify-content:space-between;align-items:center;
+  padding:.4rem 1rem;background:#fef9f0;border-radius:12px;margin-bottom:.6rem;
+  border:1px solid #f0e4cc;flex-shrink:0}
+.flip-bar .flip-counter{font-size:.85rem;font-weight:600;color:#c7851a}
+.flip-bar .flip-reset{
+  padding:.3rem .9rem;font-size:.75rem;background:#f5e6d3;color:#8b7355;
+  border:none;border-radius:8px;cursor:pointer;font-family:inherit;font-weight:600;
+  transition:background .2s}
+.flip-bar .flip-reset:hover{background:#ecd5b0}
+
+/* Reveal item that encloses flip cards needs higher max-height */
+.reveal-item.flip-item.visible{max-height:800px}
+
+/* Verb grid larger cards */
+.flip-grid.g3.vb .flip-card{height:190px}
+.flip-grid.g3.vb .flip-card-front .fc-text{font-size:1.3rem}
+.flip-grid.g3.vb .flip-card-front .fc-sub{font-size:.7rem}
+
+@media(max-width:900px){
+  html{font-size:16px}body{padding:.8rem}.slide{padding:2rem 1.5rem;min-height:45vh}
+  .reveal-item .de{font-size:1.5rem}
+  .vocab-grid{grid-template-columns:repeat(3,1fr)}
+  .compare-grid{grid-template-columns:1fr}.ex-grid{grid-template-columns:1fr}
+  .flip-grid.g5{grid-template-columns:repeat(3,1fr)}
+  .flip-card{height:170px}
+  .flip-card-front .fc-emoji{font-size:2.2rem}
+  .flip-card-back .fc-de{font-size:1rem}
+}
+@media(max-width:640px){
+  html{font-size:14px}.slide{padding:1.2rem 1rem}.slide-title{font-size:1.3rem}
+  .reveal-item .de{font-size:1.2rem}
+  .vocab-grid{grid-template-columns:repeat(2,1fr);gap:.5rem}
+  .btn{padding:.5rem 1rem;font-size:.85rem}
+  .flip-grid.g5{grid-template-columns:repeat(2,1fr)}
+  .flip-grid.g4{grid-template-columns:repeat(2,1fr)}
+  .flip-grid.g3{grid-template-columns:repeat(2,1fr)}
+  .flip-card{height:155px}
+  .flip-card-front .fc-emoji{font-size:1.8rem}
+  .flip-card-back .fc-de{font-size:.9rem}
+  .flip-grid.g3.vb .flip-card{height:160px}
+  .flip-grid.g3.vb .flip-card-front .fc-text{font-size:1.1rem}
+}
+@media(min-width:1400px){
+  html{font-size:24px}.app-container{max-width:1300px}
+  .flip-card{height:230px}
+  .flip-grid.g3.vb .flip-card{height:220px}
+}
 </style>
 </head>
 <body>
@@ -107,7 +195,7 @@ body{
 
 <!-- ====== 1: COVER ====== -->
 <div class="slide active section-start" id="slide1">
-  <div class="slide-header"><span class="slide-num">1 / 23</span></div>
+  <div class="slide-header"><span class="slide-num">1 / 24</span></div>
   <div class="slide-content" style="justify-content:center;align-items:center;text-align:center">
     <div style="font-size:4rem;margin-bottom:.5rem">🏡</div>
     <h1 style="font-size:3rem;font-weight:800;color:#3d2b0f">Wie war meine Kindheit?</h1>
@@ -124,7 +212,7 @@ body{
 
 <!-- ====== 2: Einführung 1 ====== -->
 <div class="slide" id="slide2">
-  <div class="slide-header"><span class="slide-num">2 / 23</span><span class="slide-section">🎬 Teil 1 · Einführung</span></div>
+  <div class="slide-header"><span class="slide-num">2 / 24</span><span class="slide-section">🎬 Teil 1 · Einführung</span></div>
   <div class="slide-content"><div class="reveal-wrap" id="r2">
     <div class="reveal-item"><div class="de" style="font-size:3.5rem;text-align:center">👋</div></div>
     <div class="reveal-item"><div class="de" style="font-size:2.8rem;font-weight:800;text-align:center">Hallo zusammen!</div></div>
@@ -135,7 +223,7 @@ body{
 
 <!-- ====== 3: Einführung 2 ====== -->
 <div class="slide" id="slide3">
-  <div class="slide-header"><span class="slide-num">3 / 23</span><span class="slide-section">🎬 Teil 1 · Einführung</span></div>
+  <div class="slide-header"><span class="slide-num">3 / 24</span><span class="slide-section">🎬 Teil 1 · Einführung</span></div>
   <div class="slide-content"><div class="reveal-wrap" id="r3">
     <div class="reveal-item"><div class="de">Heute sprechen wir über das Thema:</div><div class="zh">今天我们学习的话题是：</div></div>
     <div class="reveal-item"><div class="de" style="font-size:2.5rem;font-weight:700;text-align:center">„Wie <span class="praeteritum">war</span> meine Kindheit?"</div><div class="zh" style="text-align:center">"我的童年是什么样的？"</div></div>
@@ -146,7 +234,7 @@ body{
 
 <!-- ====== 4: Präteritum Intro ====== -->
 <div class="slide" id="slide4">
-  <div class="slide-header"><span class="slide-num">4 / 23</span><span class="slide-section">🎬 Teil 1 · Einführung</span></div>
+  <div class="slide-header"><span class="slide-num">4 / 24</span><span class="slide-section">🎬 Teil 1 · Einführung</span></div>
   <div class="slide-content"><div class="reveal-wrap" id="r4">
     <div class="reveal-item"><div class="de">Auf Deutsch benutzen wir für die Vergangenheit oft das <strong style="color:#c7851a">Präteritum</strong>.</div><div class="zh">德语中叙述过去常用 <strong style="color:#c7851a">过去式</strong>。</div></div>
     <div class="reveal-item"><div class="de">Zum Beispiel: „Ich <span class="praeteritum">spielte</span> gern."</div><div class="zh">例如："我以前喜欢玩。"</div></div>
@@ -155,9 +243,9 @@ body{
   <div class="rh" onclick="rN(4)" id="h4">👆 点击显示</div>
 </div>
 
-<!-- ====== 5-10: Teil 2 ====== -->
+<!-- ====== 5-11: Teil 2 ====== -->
 <div class="slide" id="slide5">
-  <div class="slide-header"><span class="slide-num">5 / 23</span><span class="slide-section">🌳 Teil 2 · Meine Kindheit</span></div>
+  <div class="slide-header"><span class="slide-num">5 / 24</span><span class="slide-section">🌳 Teil 2 · Meine Kindheit</span></div>
   <div class="slide-content" style="justify-content:center;align-items:center;text-align:center"><div class="reveal-wrap" id="r5">
     <div class="reveal-item"><div class="de">Früher <span class="praeteritum">war</span> ich sehr aktiv.</div><div class="zh">以前我非常活跃。</div></div>
     <div class="reveal-item" style="margin-top:.5rem"><span class="gl gl-p">Präteritum</span> <span class="praeteritum">war</span> = <strong>sein</strong>（是）的过去式</div>
@@ -166,7 +254,7 @@ body{
 </div>
 
 <div class="slide" id="slide6">
-  <div class="slide-header"><span class="slide-num">6 / 23</span><span class="slide-section">🌳 Teil 2 · Meine Kindheit</span></div>
+  <div class="slide-header"><span class="slide-num">6 / 24</span><span class="slide-section">🌳 Teil 2 · Meine Kindheit</span></div>
   <div class="slide-content" style="justify-content:center;align-items:center;text-align:center"><div class="reveal-wrap" id="r6">
     <div class="reveal-item"><div class="de">Ich <span class="praeteritum">spielte</span> jeden Tag draußen.</div><div class="zh">我每天都在外面玩。</div></div>
     <div class="reveal-item" style="margin-top:.5rem"><span class="gl gl-p">规则</span> spielen → 词干 + <strong style="color:#c7851a">-te</strong> → <span class="praeteritum">spielte</span></div>
@@ -175,7 +263,7 @@ body{
 </div>
 
 <div class="slide" id="slide7">
-  <div class="slide-header"><span class="slide-num">7 / 23</span><span class="slide-section">🌳 Teil 2 · Meine Kindheit</span></div>
+  <div class="slide-header"><span class="slide-num">7 / 24</span><span class="slide-section">🌳 Teil 2 · Meine Kindheit</span></div>
   <div class="slide-content" style="justify-content:center;align-items:center;text-align:center"><div class="reveal-wrap" id="r7">
     <div class="reveal-item"><div class="de">Meine Familie <span class="praeteritum">war</span> sehr wichtig für mich.</div><div class="zh">我的家庭对我很重要。</div></div>
     <div class="reveal-item" style="margin-top:.5rem"><span class="gl gl-p">Prät</span> <span class="praeteritum">war</span> = <strong>sein</strong>（不规则）</div>
@@ -184,7 +272,7 @@ body{
 </div>
 
 <div class="slide" id="slide8">
-  <div class="slide-header"><span class="slide-num">8 / 23</span><span class="slide-section">🌳 Teil 2 · Meine Kindheit</span></div>
+  <div class="slide-header"><span class="slide-num">8 / 24</span><span class="slide-section">🌳 Teil 2 · Meine Kindheit</span></div>
   <div class="slide-content"><div class="reveal-wrap" id="r8">
     <div class="reveal-item"><div class="de">Als Kind <span class="praeteritum">war</span> ich sehr neugierig.</div><div class="zh">小时候我非常好奇。</div></div>
     <div class="reveal-item"><div class="de">Ich <span class="praeteritum">spielte</span> oft mit meinen Freunden draußen.</div><div class="zh">我经常和朋友们在外面玩。</div></div>
@@ -193,7 +281,7 @@ body{
 </div>
 
 <div class="slide" id="slide9">
-  <div class="slide-header"><span class="slide-num">9 / 23</span><span class="slide-section">🌳 Teil 2 · Meine Kindheit</span></div>
+  <div class="slide-header"><span class="slide-num">9 / 24</span><span class="slide-section">🌳 Teil 2 · Meine Kindheit</span></div>
   <div class="slide-content"><div class="reveal-wrap" id="r9">
     <div class="reveal-item"><div class="de">Im Sommer <span class="praeteritum">fuhren</span> wir Fahrrad …</div><div class="zh">夏天我们骑自行车……</div></div>
     <div class="reveal-item"><div class="de">… und <span class="praeteritum">spielten</span> Fußball im Park.</div><div class="zh">……在公园踢足球。</div></div>
@@ -203,7 +291,7 @@ body{
 </div>
 
 <div class="slide" id="slide10">
-  <div class="slide-header"><span class="slide-num">10 / 23</span><span class="slide-section">🌳 Teil 2 · Meine Kindheit</span></div>
+  <div class="slide-header"><span class="slide-num">10 / 24</span><span class="slide-section">🌳 Teil 2 · Meine Kindheit</span></div>
   <div class="slide-content"><div class="reveal-wrap" id="r10">
     <div class="reveal-item"><div class="de">Meine Eltern <span class="praeteritum">waren</span> sehr freundlich,</div><div class="zh">我的父母非常友善，</div></div>
     <div class="reveal-item"><div class="de">und wir <span class="praeteritum">aßen</span> jeden Abend zusammen.</div><div class="zh">我们每天晚上一起吃饭。</div></div>
@@ -213,7 +301,7 @@ body{
 </div>
 
 <div class="slide" id="slide11">
-  <div class="slide-header"><span class="slide-num">11 / 23</span><span class="slide-section">🌳 Teil 2 · Meine Kindheit</span></div>
+  <div class="slide-header"><span class="slide-num">11 / 24</span><span class="slide-section">🌳 Teil 2 · Meine Kindheit</span></div>
   <div class="slide-content"><div class="reveal-wrap" id="r11">
     <div class="reveal-item"><div class="de">Damals <span class="praeteritum">hatte</span> ich kein Smartphone,</div><div class="zh">那时候我没有智能手机，</div></div>
     <div class="reveal-item"><div class="de">aber ich <span class="praeteritum">war</span> trotzdem glücklich. 😊</div><div class="zh">但我依然很快乐。</div></div>
@@ -222,23 +310,65 @@ body{
 </div>
 
 <!-- ====== 12-15: Teil 3 ====== -->
-<div class="slide" id="slide12">
-  <div class="slide-header"><span class="slide-num">12 / 23</span><span class="slide-section">🎒 Teil 3 · Schule und Freunde</span></div>
+<!-- ====== 12: 词汇翻牌卡 (5张) ====== -->
+<div class="slide flip-slide" id="slide12">
+  <div class="slide-header"><span class="slide-num">12 / 24</span><span class="slide-section">🎒 Teil 3 · Schule und Freunde</span></div>
   <div class="slide-content"><div class="reveal-wrap" id="r12">
-    <div class="reveal-item"><p style="font-size:.9rem;color:#c7851a;font-weight:600;margin-bottom:.3rem">📝 Wortschatz · 词汇</p></div>
-    <div class="reveal-item"><div class="vocab-grid">
-      <div class="vocab-card"><span class="e">🏫</span><div class="d">die Schule</div><div class="z">学校</div></div>
-      <div class="vocab-card"><span class="e">👫</span><div class="d">der Freund</div><div class="z">朋友</div></div>
-      <div class="vocab-card"><span class="e">📖</span><div class="d">lernen</div><div class="z">学习</div></div>
-      <div class="vocab-card"><span class="e">⚽</span><div class="d">spielen</div><div class="z">玩</div></div>
-      <div class="vocab-card"><span class="e">😂</span><div class="d">lachen</div><div class="z">大笑</div></div>
-    </div></div>
+    <div class="reveal-item"><p style="font-size:.9rem;color:#c7851a;font-weight:600;margin-bottom:.3rem">📝 Wortschatz · 词汇 — 点击卡片翻看 👆</p></div>
+    <div class="reveal-item flip-item">
+      <div class="flip-bar">
+        <span class="flip-counter" id="fc12">0 / 5</span>
+        <button class="flip-reset" onclick="resetFlips(12);event.stopPropagation()">🔄 全部翻回</button>
+      </div>
+      <div class="flip-grid g5" id="fg12">
+        <div class="flip-card" onclick="flip(this)"><div class="flip-card-inner">
+          <div class="flip-card-front"><span class="fc-emoji">🏫</span></div>
+          <div class="flip-card-back">
+            <div class="fc-de">die Schule</div>
+            <div class="fc-zh">学校</div>
+            <div class="fc-ex">Ich <span class="praeteritum">ging</span> gern in die Schule.</div>
+          </div>
+        </div></div>
+        <div class="flip-card" onclick="flip(this)"><div class="flip-card-inner">
+          <div class="flip-card-front"><span class="fc-emoji">👫</span></div>
+          <div class="flip-card-back">
+            <div class="fc-de">der Freund / die Freundin</div>
+            <div class="fc-zh">朋友</div>
+            <div class="fc-ex">Meine Freunde <span class="praeteritum">waren</span> lustig.</div>
+          </div>
+        </div></div>
+        <div class="flip-card" onclick="flip(this)"><div class="flip-card-inner">
+          <div class="flip-card-front"><span class="fc-emoji">📖</span></div>
+          <div class="flip-card-back">
+            <div class="fc-de">lernen · lernte</div>
+            <div class="fc-zh">学习</div>
+            <div class="fc-ex">Ich <span class="praeteritum">lernte</span> jeden Tag.</div>
+          </div>
+        </div></div>
+        <div class="flip-card" onclick="flip(this)"><div class="flip-card-inner">
+          <div class="flip-card-front"><span class="fc-emoji">⚽</span></div>
+          <div class="flip-card-back">
+            <div class="fc-de">spielen · spielte</div>
+            <div class="fc-zh">玩</div>
+            <div class="fc-ex">Wir <span class="praeteritum">spielten</span> oft Fußball.</div>
+          </div>
+        </div></div>
+        <div class="flip-card" onclick="flip(this)"><div class="flip-card-inner">
+          <div class="flip-card-front"><span class="fc-emoji">😂</span></div>
+          <div class="flip-card-back">
+            <div class="fc-de">lachen · lachte</div>
+            <div class="fc-zh">大笑</div>
+            <div class="fc-ex">Wir <span class="praeteritum">lachten</span> viel zusammen.</div>
+          </div>
+        </div></div>
+      </div>
+    </div>
   </div></div>
   <div class="rh" onclick="rN(12)" id="h12">👆 点击显示</div>
 </div>
 
 <div class="slide" id="slide13">
-  <div class="slide-header"><span class="slide-num">13 / 23</span><span class="slide-section">🎒 Teil 3 · Schule und Freunde</span></div>
+  <div class="slide-header"><span class="slide-num">13 / 24</span><span class="slide-section">🎒 Teil 3 · Schule und Freunde</span></div>
   <div class="slide-content"><div class="reveal-wrap" id="r13">
     <div class="reveal-item"><div class="de">In der Schule <span class="praeteritum">hatte</span> ich viele Freunde.</div><div class="zh">在学校里我有很多朋友。</div></div>
     <div class="reveal-item"><div class="de">Wir <span class="praeteritum">lernten</span> zusammen und <span class="praeteritum">machten</span> viele lustige Dinge.</div><div class="zh">我们一起学习，也做很多有趣的事情。</div></div>
@@ -247,7 +377,7 @@ body{
 </div>
 
 <div class="slide" id="slide14">
-  <div class="slide-header"><span class="slide-num">14 / 23</span><span class="slide-section">🎒 Teil 3 · Schule und Freunde</span></div>
+  <div class="slide-header"><span class="slide-num">14 / 24</span><span class="slide-section">🎒 Teil 3 · Schule und Freunde</span></div>
   <div class="slide-content"><div class="reveal-wrap" id="r14">
     <div class="reveal-item"><div class="de">Meine Lieblingsfächer <span class="praeteritum">waren</span> Kunst und Sport.</div><div class="zh">我最喜欢的科目是美术和体育。</div></div>
     <div class="reveal-item"><div class="de">Ich <span class="praeteritum">lachte</span> viel mit meinen Klassenkameraden.</div><div class="zh">我经常和同学们一起大笑。</div></div>
@@ -256,7 +386,7 @@ body{
 </div>
 
 <div class="slide" id="slide15">
-  <div class="slide-header"><span class="slide-num">15 / 23</span><span class="slide-section">🎒 Teil 3 · Schule und Freunde</span></div>
+  <div class="slide-header"><span class="slide-num">15 / 24</span><span class="slide-section">🎒 Teil 3 · Schule und Freunde</span></div>
   <div class="slide-content" style="justify-content:center;text-align:center"><div class="reveal-wrap" id="r15">
     <div class="reveal-item"><div class="de">Manchmal <span class="praeteritum">machten</span> wir auch Fehler,</div><div class="zh">有时候我们也会犯错，</div></div>
     <div class="reveal-item"><div class="de" style="font-size:2.4rem;font-weight:700">aber das <span class="praeteritum">war</span> eine schöne Zeit. ✨</div><div class="zh" style="font-size:1.2rem">但那是一段美好的时光。</div></div>
@@ -266,7 +396,7 @@ body{
 
 <!-- ====== 16-18: Teil 4 ====== -->
 <div class="slide" id="slide16">
-  <div class="slide-header"><span class="slide-num">16 / 23</span><span class="slide-section">🕰️ Teil 4 · Veränderungen</span></div>
+  <div class="slide-header"><span class="slide-num">16 / 24</span><span class="slide-section">🕰️ Teil 4 · Veränderungen</span></div>
   <div class="slide-content"><div class="reveal-wrap" id="r16">
     <div class="reveal-item"><div class="compare-card f"><div class="l">⏪ FRÜHER · 以前</div>
       <div class="i"><div class="d">Ich <span class="praeteritum">hatte</span> mehr Zeit.</div><div class="z">以前我有更多时间。</div></div>
@@ -278,7 +408,7 @@ body{
 </div>
 
 <div class="slide" id="slide17">
-  <div class="slide-header"><span class="slide-num">17 / 23</span><span class="slide-section">🕰️ Teil 4 · Veränderungen</span></div>
+  <div class="slide-header"><span class="slide-num">17 / 24</span><span class="slide-section">🕰️ Teil 4 · Veränderungen</span></div>
   <div class="slide-content"><div class="reveal-wrap" id="r17">
     <div class="reveal-item"><div class="compare-card h"><div class="l">⏩ HEUTE · 今天</div>
       <div class="i"><div class="d">Alles ist schneller.</div><div class="z">现在一切都更快了。</div></div>
@@ -290,7 +420,7 @@ body{
 </div>
 
 <div class="slide" id="slide18">
-  <div class="slide-header"><span class="slide-num">18 / 23</span><span class="slide-section">🕰️ Teil 4 · Veränderungen</span></div>
+  <div class="slide-header"><span class="slide-num">18 / 24</span><span class="slide-section">🕰️ Teil 4 · Veränderungen</span></div>
   <div class="slide-content" style="justify-content:center;text-align:center"><div class="reveal-wrap" id="r18">
     <div class="reveal-item"><div class="de" style="font-size:3rem">💛</div></div>
     <div class="reveal-item"><div class="de">Meine Kindheit <span class="praeteritum">war</span> wunderschön.</div><div class="zh">我的童年非常美好。</div></div>
@@ -299,23 +429,42 @@ body{
   <div class="rh" onclick="rN(18)" id="h18">👆 点击显示</div>
 </div>
 
-<!-- ====== 19-22: Teil 5 ====== -->
-<div class="slide" id="slide19">
-  <div class="slide-header"><span class="slide-num">19 / 23</span><span class="slide-section">📝 Teil 5 · Zusammenfassung</span></div>
+<!-- ====== 19-24: Teil 5 ====== -->
+<!-- ====== 19: 句型翻牌卡 (4张) ====== -->
+<div class="slide flip-slide" id="slide19">
+  <div class="slide-header"><span class="slide-num">19 / 24</span><span class="slide-section">📝 Teil 5 · Zusammenfassung</span></div>
   <div class="slide-content"><div class="reveal-wrap" id="r19">
-    <div class="reveal-item"><p style="font-size:.9rem;color:#c7851a;font-weight:600">📌 Wichtige Sätze · 重点句型</p></div>
-    <div class="reveal-item"><ul style="list-style:none;display:flex;flex-direction:column;gap:.6rem">
-      <li style="padding:.6rem .8rem;background:#fefbf5;border-radius:8px;font-size:1.1rem">Früher <span class="praeteritum">war</span> ich … — 以前我是……</li>
-      <li style="padding:.6rem .8rem;background:#fefbf5;border-radius:8px;font-size:1.1rem">Ich <span class="praeteritum">spielte</span> oft … — 我经常玩……</li>
-      <li style="padding:.6rem .8rem;background:#fefbf5;border-radius:8px;font-size:1.1rem">Meine Kindheit <span class="praeteritum">war</span> … — 我的童年是……</li>
-      <li style="padding:.6rem .8rem;background:#fefbf5;border-radius:8px;font-size:1.1rem">Ich erinnere mich an … — 我记得……</li>
-    </ul></div>
+    <div class="reveal-item"><p style="font-size:.9rem;color:#c7851a;font-weight:600">📌 Wichtige Sätze · 重点句型 — 先看中文，想德语，再翻牌 👆</p></div>
+    <div class="reveal-item flip-item">
+      <div class="flip-bar">
+        <span class="flip-counter" id="fc19">0 / 4</span>
+        <button class="flip-reset" onclick="resetFlips(19);event.stopPropagation()">🔄 全部翻回</button>
+      </div>
+      <div class="flip-grid g4" id="fg19">
+        <div class="flip-card" onclick="flip(this)"><div class="flip-card-inner">
+          <div class="flip-card-front"><span class="fc-text">以前我是……</span></div>
+          <div class="flip-card-back"><div class="fc-de" style="font-size:1.3rem">Früher <span class="praeteritum">war</span> ich …</div></div>
+        </div></div>
+        <div class="flip-card" onclick="flip(this)"><div class="flip-card-inner">
+          <div class="flip-card-front"><span class="fc-text">我经常玩……</span></div>
+          <div class="flip-card-back"><div class="fc-de" style="font-size:1.3rem">Ich <span class="praeteritum">spielte</span> oft …</div></div>
+        </div></div>
+        <div class="flip-card" onclick="flip(this)"><div class="flip-card-inner">
+          <div class="flip-card-front"><span class="fc-text">我的童年是……</span></div>
+          <div class="flip-card-back"><div class="fc-de" style="font-size:1.3rem">Meine Kindheit <span class="praeteritum">war</span> …</div></div>
+        </div></div>
+        <div class="flip-card" onclick="flip(this)"><div class="flip-card-inner">
+          <div class="flip-card-front"><span class="fc-text">我记得……</span></div>
+          <div class="flip-card-back"><div class="fc-de" style="font-size:1.3rem">Ich erinnere mich an …</div></div>
+        </div></div>
+      </div>
+    </div>
   </div></div>
   <div class="rh" onclick="rN(19)" id="h19">👆 点击显示</div>
 </div>
 
 <div class="slide" id="slide20">
-  <div class="slide-header"><span class="slide-num">20 / 23</span><span class="slide-section">📝 Teil 5 · Zusammenfassung</span></div>
+  <div class="slide-header"><span class="slide-num">20 / 24</span><span class="slide-section">📝 Teil 5 · Zusammenfassung</span></div>
   <div class="slide-content"><div class="reveal-wrap" id="r20">
     <div class="reveal-item"><p style="font-size:.9rem;color:#c7851a;font-weight:600">🔬 Präteritum · 变位规则</p></div>
     <div class="reveal-item"><div class="gbox" style="font-size:1rem"><strong>sein</strong> → ich <span class="praeteritum">war</span>, du <span class="praeteritum">warst</span>, er/sie/es <span class="praeteritum">war</span>,<br>wir <span class="praeteritum">waren</span>, ihr <span class="praeteritum">wart</span>, sie <span class="praeteritum">waren</span></div></div>
@@ -325,9 +474,102 @@ body{
   <div class="rh" onclick="rN(20)" id="h20">👆 点击显示</div>
 </div>
 
-<div class="slide" id="slide21">
-  <div class="slide-header"><span class="slide-num">21 / 23</span><span class="slide-section">📝 Teil 5 · Zusammenfassung</span></div>
+<!-- ====== 21: 变位猜谜翻牌 (9张) — 新增 ====== -->
+<div class="slide flip-slide" id="slide21">
+  <div class="slide-header"><span class="slide-num">21 / 24</span><span class="slide-section">📝 Teil 5 · Verb Flip ✨</span></div>
   <div class="slide-content"><div class="reveal-wrap" id="r21">
+    <div class="reveal-item">
+      <p style="font-size:.9rem;color:#c7851a;font-weight:600;margin-bottom:.3rem">🎴 Verb Flip · 变位大猜谜</p>
+      <p style="font-size:.8rem;color:#8b7355">先猜变位，再翻牌验证 — <span style="color:#d49320;font-weight:600">金色边框</span> = 不规则动词</p>
+    </div>
+    <div class="reveal-item flip-item">
+      <div class="flip-bar">
+        <span class="flip-counter" id="fc21">0 / 9</span>
+        <button class="flip-reset" onclick="resetFlips(21);event.stopPropagation()">🔄 全部翻回</button>
+      </div>
+      <div class="flip-grid g3 vb" id="fg21">
+        <!-- 1. sein -->
+        <div class="flip-card" onclick="flip(this)"><div class="flip-card-inner">
+          <div class="flip-card-front irregular"><span class="fc-text">sein</span><span class="fc-sub">是</span><span class="fc-hint">不规则</span></div>
+          <div class="flip-card-back">
+            <div class="fc-verb"><span class="prt">war</span> · <span class="prf">ist gewesen</span></div>
+            <div class="fc-ex">Ich <span class="praeteritum">war</span> ein glückliches Kind.</div>
+          </div>
+        </div></div>
+        <!-- 2. haben -->
+        <div class="flip-card" onclick="flip(this)"><div class="flip-card-inner">
+          <div class="flip-card-front irregular"><span class="fc-text">haben</span><span class="fc-sub">有</span><span class="fc-hint">不规则</span></div>
+          <div class="flip-card-back">
+            <div class="fc-verb"><span class="prt">hatte</span> · <span class="prf">hat gehabt</span></div>
+            <div class="fc-ex">Ich <span class="praeteritum">hatte</span> viele Freunde.</div>
+          </div>
+        </div></div>
+        <!-- 3. spielen -->
+        <div class="flip-card" onclick="flip(this)"><div class="flip-card-inner">
+          <div class="flip-card-front"><span class="fc-text">spielen</span><span class="fc-sub">玩</span></div>
+          <div class="flip-card-back">
+            <div class="fc-verb"><span class="prt">spielte</span> · <span class="prf">hat gespielt</span></div>
+            <div class="fc-ex">Ich <span class="praeteritum">spielte</span> jeden Tag draußen.</div>
+          </div>
+        </div></div>
+        <!-- 4. machen -->
+        <div class="flip-card" onclick="flip(this)"><div class="flip-card-inner">
+          <div class="flip-card-front"><span class="fc-text">machen</span><span class="fc-sub">做</span></div>
+          <div class="flip-card-back">
+            <div class="fc-verb"><span class="prt">machte</span> · <span class="prf">hat gemacht</span></div>
+            <div class="fc-ex">Wir <span class="praeteritum">machten</span> viele lustige Dinge.</div>
+          </div>
+        </div></div>
+        <!-- 5. lachen -->
+        <div class="flip-card" onclick="flip(this)"><div class="flip-card-inner">
+          <div class="flip-card-front"><span class="fc-text">lachen</span><span class="fc-sub">笑</span></div>
+          <div class="flip-card-back">
+            <div class="fc-verb"><span class="prt">lachte</span> · <span class="prf">hat gelacht</span></div>
+            <div class="fc-ex">Wir <span class="praeteritum">lachten</span> viel zusammen.</div>
+          </div>
+        </div></div>
+        <!-- 6. lernen -->
+        <div class="flip-card" onclick="flip(this)"><div class="flip-card-inner">
+          <div class="flip-card-front"><span class="fc-text">lernen</span><span class="fc-sub">学习</span></div>
+          <div class="flip-card-back">
+            <div class="fc-verb"><span class="prt">lernte</span> · <span class="prf">hat gelernt</span></div>
+            <div class="fc-ex">Ich <span class="praeteritum">lernte</span> gern in der Schule.</div>
+          </div>
+        </div></div>
+        <!-- 7. fahren -->
+        <div class="flip-card" onclick="flip(this)"><div class="flip-card-inner">
+          <div class="flip-card-front irregular"><span class="fc-text">fahren</span><span class="fc-sub">骑/乘</span><span class="fc-hint">不规则</span></div>
+          <div class="flip-card-back">
+            <div class="fc-verb"><span class="prt">fuhr</span> · <span class="prf">ist gefahren</span></div>
+            <div class="fc-ex">Wir <span class="praeteritum">fuhren</span> jeden Sommer ans Meer.</div>
+          </div>
+        </div></div>
+        <!-- 8. essen -->
+        <div class="flip-card" onclick="flip(this)"><div class="flip-card-inner">
+          <div class="flip-card-front irregular"><span class="fc-text">essen</span><span class="fc-sub">吃</span><span class="fc-hint">不规则</span></div>
+          <div class="flip-card-back">
+            <div class="fc-verb"><span class="prt">aß</span> · <span class="prf">hat gegessen</span></div>
+            <div class="fc-ex">Wir <span class="praeteritum">aßen</span> jeden Abend zusammen.</div>
+          </div>
+        </div></div>
+        <!-- 9. mögen -->
+        <div class="flip-card" onclick="flip(this)"><div class="flip-card-inner">
+          <div class="flip-card-front irregular"><span class="fc-text">mögen</span><span class="fc-sub">喜欢</span><span class="fc-hint">不规则</span></div>
+          <div class="flip-card-back">
+            <div class="fc-verb"><span class="prt">mochte</span> · <span class="prf">hat gemocht</span></div>
+            <div class="fc-ex">Ich <span class="praeteritum">mochte</span> Schokolade sehr.</div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </div></div>
+  <div class="rh" onclick="rN(21)" id="h21">👆 点击显示</div>
+</div>
+
+<!-- ====== 22: 变位速查表 (原 21) ====== -->
+<div class="slide" id="slide22">
+  <div class="slide-header"><span class="slide-num">22 / 24</span><span class="slide-section">📝 Teil 5 · Zusammenfassung</span></div>
+  <div class="slide-content"><div class="reveal-wrap" id="r22">
     <div class="reveal-item"><p style="font-size:.9rem;color:#c7851a;font-weight:600">🔤 Verbtabelle · 动词变位速查表</p></div>
     <div class="reveal-item"><div class="tw"><table class="ct">
       <thead><tr><th>Infinitiv</th><th>中文</th><th>Präteritum</th><th>Perfekt</th></tr></thead>
@@ -344,12 +586,13 @@ body{
       </tbody>
     </table></div></div>
   </div></div>
-  <div class="rh" onclick="rN(21)" id="h21">👆 点击显示</div>
+  <div class="rh" onclick="rN(22)" id="h22">👆 点击显示</div>
 </div>
 
-<div class="slide" id="slide22">
-  <div class="slide-header"><span class="slide-num">22 / 23</span><span class="slide-section">📝 Teil 5 · Zusammenfassung</span></div>
-  <div class="slide-content"><div class="reveal-wrap" id="r22">
+<!-- ====== 23: 练习 (原 22) ====== -->
+<div class="slide" id="slide23">
+  <div class="slide-header"><span class="slide-num">23 / 24</span><span class="slide-section">📝 Teil 5 · Zusammenfassung</span></div>
+  <div class="slide-content"><div class="reveal-wrap" id="r23">
     <div class="reveal-item"><p style="font-size:.9rem;color:#c7851a;font-weight:600">✏️ Übungen · 互动练习</p></div>
     <div class="reveal-item"><div class="ex-grid">
       <div class="ex"><div class="qh"><span class="qn">1</span><span class="q">Wie war deine Kindheit?</span></div><div class="h">你的童年是什么样的？</div><textarea id="a1" placeholder="Meine Kindheit war ..."></textarea><div class="br"><button class="bs" onclick="sA(1)">💾 保存</button><span class="sa" id="s1">✅ 已保存</span></div></div>
@@ -358,36 +601,36 @@ body{
       <div class="ex"><div class="qh"><span class="qn">4</span><span class="q">Welche Spiele mochtest du?</span></div><div class="h">你小时候喜欢什么游戏？</div><textarea id="a4" placeholder="Als Kind mochte ich ..."></textarea><div class="br"><button class="bs" onclick="sA(4)">💾 保存</button><span class="sa" id="s4">✅ 已保存</span></div></div>
     </div></div>
   </div></div>
-  <div class="rh" onclick="rN(22)" id="h22">👆 点击显示</div>
+  <div class="rh" onclick="rN(23)" id="h23">👆 点击显示</div>
 </div>
 
-<!-- ====== 23: END ====== -->
-<div class="slide section-start" id="slide23">
-  <div class="slide-header"><span class="slide-num">23 / 23</span><span class="slide-section">✨ Abschluss</span></div>
+<!-- ====== 24: END (原 23) ====== -->
+<div class="slide section-start" id="slide24">
+  <div class="slide-header"><span class="slide-num">24 / 24</span><span class="slide-section">✨ Abschluss</span></div>
   <div class="slide-content" style="justify-content:center;align-items:center;text-align:center">
     <div style="font-size:4rem;margin-bottom:.5rem">🌅</div>
-    <div class="reveal-wrap" id="r23">
+    <div class="reveal-wrap" id="r24">
       <div class="reveal-item"><div style="font-size:1.6rem;color:#8b7355;font-style:italic">Vielen Dank!</div><div style="font-size:1rem;color:#c4a97a">谢谢大家！</div></div>
       <div class="reveal-item"><div style="width:60px;height:3px;background:#e8a838;margin:.8rem auto;border-radius:2px"></div></div>
       <div class="reveal-item"><div class="de" style="font-size:1.8rem;font-weight:700;font-style:italic;color:#c7851a;line-height:1.5">„Deutsch ist nicht nur Grammatik —<br>Deutsch ist <em>deine</em> Geschichte."</div><div class="zh" style="font-size:1.1rem;font-weight:600">德语不只是语法——德语就是<em>你的</em>故事。🦋</div></div>
       <div class="reveal-item"><div style="font-size:1.2rem;color:#8b7355;margin-top:.5rem">Tschüss und bis zum nächsten Mal! 👋</div></div>
     </div>
   </div>
-  <div class="rh" onclick="rN(23)" id="h23">👆 点击显示</div>
+  <div class="rh" onclick="rN(24)" id="h24">👆 点击显示</div>
 </div>
 
 <!-- ===== Navigation ===== -->
 <div class="nav-row">
   <button class="btn btn-prev" id="btnPrev" onclick="pS()" disabled>← Zurück</button>
-  <span class="pi" id="pI">1 / 23</span>
+  <span class="pi" id="pI">1 / 24</span>
   <button class="btn btn-next" id="btnNext" onclick="nS()">Weiter →</button>
 </div>
-<div class="kbd">← → 翻页 · 空格/点击逐条显示</div>
+<div class="kbd">← → 翻页 · 空格/点击逐条显示 · 翻牌页面点击卡片翻转</div>
 <footer class="footer">Wie war meine Kindheit? · Präteritum · A2–B1 · 🦞</footer>
 </div>
 
 <script>
-let c=1,t=23,r={},rt={};
+let c=1,t=24,r={},rt={};
 for(let i=1;i<=t;i++){r[i]=0;let e=document.getElementById('r'+i);rt[i]=e?e.querySelectorAll('.reveal-item').length:0}
 function sS(n){
   if(n<1||n>t)return;
@@ -398,7 +641,6 @@ function sS(n){
   document.getElementById('btnPrev').disabled=n===1;
   document.getElementById('btnNext').disabled=n===t;
   document.getElementById('pI').textContent=n+' / '+t;
-  // Horizontal animation direction
   el.style.animation='slideIn .4s ease';
   window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -425,6 +667,8 @@ function rN(n){
 document.querySelectorAll('.slide').forEach(s=>{
   s.addEventListener('click',function(e){
     if(e.target.tagName==='BUTTON'||e.target.tagName==='TEXTAREA'||e.target.tagName==='INPUT')return;
+    // Don't intercept clicks on flip cards — let their own handler run
+    if(e.target.closest('.flip-card'))return;
     let n=parseInt(this.id.replace('slide',''));
     let h=document.getElementById('h'+n);
     if(h&&!h.classList.contains('d'))rN(n);
@@ -443,6 +687,24 @@ document.addEventListener('touchend',e=>{
   let dx=e.changedTouches[0].screenX-tx,dy=e.changedTouches[0].screenY-ty;
   if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>50){if(dx<0)nS();else pS()}
 });
+
+// ===== Flip Card Logic =====
+function flip(card){
+  card.classList.toggle('flipped');
+  updateFlipCounter(card.closest('.slide'));
+}
+function resetFlips(slideNum){
+  let slide=document.getElementById('slide'+slideNum);
+  if(!slide)return;
+  slide.querySelectorAll('.flip-card').forEach(c=>c.classList.remove('flipped'));
+  updateFlipCounter(slide);
+}
+function updateFlipCounter(slide){
+  let total=slide.querySelectorAll('.flip-card').length;
+  let flipped=slide.querySelectorAll('.flip-card.flipped').length;
+  let counter=slide.querySelector('.flip-counter');
+  if(counter)counter.textContent=flipped+' / '+total;
+}
 </script>
 </body>
 </html>
